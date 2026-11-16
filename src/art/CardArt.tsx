@@ -51,7 +51,8 @@ function Symbol({ suit, color }: { suit: Suit; color: string }) {
         <g stroke={color} stroke-width="3" fill="none">
           <circle r="14" />
           <circle r="8" stroke-width="1.5" />
-          <rect x="-3" y="-3" width="6" height="6" transform="rotate(45)" fill={color} stroke="none" />
+          {/* five-pointed star engraved on the disc (pentacle) */}
+          <polygon points="0,-7 1.65,-2.27 6.66,-2.16 2.67,0.87 4.11,5.66 0,2.8 -4.11,5.66 -2.67,0.87 -6.66,-2.16 -1.65,-2.27" fill={color} stroke="none" />
         </g>
       );
   }

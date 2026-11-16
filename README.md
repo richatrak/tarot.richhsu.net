@@ -5,7 +5,7 @@ no tracking. Built with Vite + Preact + TypeScript + vite-plugin-pwa (Workbox, i
 
 ## Features (v0.1)
 - Spreads: single card · 3-card Past/Present/Future · 3-card Situation/Action/Outcome · Two-choice (5) · Celtic Cross (10) · **free draw of any 1–78 cards**.
-- Standard 78-card deck, RWS ordering (Strength 8, Justice 11), suits 權杖/聖杯/寶劍/**金幣**.
+- Standard 78-card deck, RWS ordering (Strength 8, Justice 11), suits 權杖/聖杯/寶劍/**星幣**.
 - Draws: Web Crypto `getRandomValues` + rejection sampling (no modulo bias) + Fisher–Yates; no repeats within a reading. Each card keeps draw order, position, upright/reversed.
 - Reversals: on by default, 50% per card, toggle on home & settings.
 - Every card: zh-TW name, English name, keywords, upright/reversed meaning, reflection tip. Content marked `draft` until human-reviewed (shown in UI).

@@ -11,10 +11,10 @@ describe('deck', () => {
     expect(CARDS.filter((c) => c.arcana === 'major')).toHaveLength(22);
     for (const s of ['wands', 'cups', 'swords', 'coins']) expect(CARDS.filter((c) => c.suit === s)).toHaveLength(14);
   });
-  it('uses RWS numbering (Strength 8, Justice 11) and 金幣 naming', () => {
+  it('uses RWS numbering (Strength 8, Justice 11) and 星幣 naming', () => {
     expect(getCard('major-08').name).toBe('力量');
     expect(getCard('major-11').name).toBe('正義');
-    expect(getCard('coins-01').name).toBe('金幣王牌');
+    expect(getCard('coins-01').name).toBe('星幣王牌');
     expect(getCard('cups-14').name).toBe('聖杯國王');
   });
   it('every card has non-empty upright, reversed, keywords and tip', () => {

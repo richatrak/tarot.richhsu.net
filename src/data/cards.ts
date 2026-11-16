@@ -29,7 +29,7 @@ export const SUIT_INFO: Record<Suit, { name: string; nameEn: string; element: st
   wands: { name: '權杖', nameEn: 'Wands', element: '火', theme: '行動、熱情、創造力' },
   cups: { name: '聖杯', nameEn: 'Cups', element: '水', theme: '情感、關係、直覺' },
   swords: { name: '寶劍', nameEn: 'Swords', element: '風', theme: '思考、溝通、衝突' },
-  coins: { name: '金幣', nameEn: 'Pentacles', element: '土', theme: '金錢、工作、身體與現實' },
+  coins: { name: '星幣', nameEn: 'Pentacles', element: '土', theme: '物質、工作、身體與現實' },
 };
 
 export const RANK_NAMES = ['', '王牌', '二', '三', '四', '五', '六', '七', '八', '九', '十', '侍者', '騎士', '皇后', '國王'];
