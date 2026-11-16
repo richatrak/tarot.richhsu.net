@@ -1,4 +1,6 @@
-# 靜心塔羅 (Tarot reflection PWA)
+# 心富塔羅 Richly (Tarot reflection PWA)
+
+"Rich within": the name means a heart that is rich — reflection, not fortune-telling or wealth-seeking.
 
 Traditional-Chinese, beginner-friendly tarot **reflection** web app. Installable, works offline, no login,
 no tracking. Built with Vite + Preact + TypeScript + vite-plugin-pwa (Workbox, injectManifest).
@@ -50,7 +52,7 @@ Bump `version` in `package.json` so the About page shows it. Old precaches are c
 ## Future: wrap with Capacitor (iOS/Android) — not done, not tested
 ```bash
 npm i @capacitor/core @capacitor/cli @capacitor/ios @capacitor/android
-npx cap init 靜心塔羅 com.example.tarot --web-dir dist
+npx cap init 心富塔羅 com.example.richly --web-dir dist
 npm run build && npx cap add ios && npx cap add android
 npx cap sync && npx cap open ios   # needs macOS + Xcode; Android Studio for android
 ```

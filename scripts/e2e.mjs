@@ -126,7 +126,7 @@ async function checkReading(page, expectCount, label) {
   ok(pill.includes('已就緒'), `offline readiness indicator shows ready (“${pill.trim()}”)`);
   await ctx.setOffline(true);
   await page.reload();
-  ok((await page.title()) === '靜心塔羅', 'app launches while offline');
+  ok((await page.title()) === '心富塔羅', 'app launches while offline');
   await pick(page, 'celtic');
   await page.click('#draw');
   await checkReading(page, 10, 'offline celtic cross');

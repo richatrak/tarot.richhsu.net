@@ -61,7 +61,7 @@ export function App() {
     <>
       <a class="skip" href="#main">跳到主要內容</a>
       <header class="top">
-        <h1><button type="button" class="brand" onClick={() => go('home')}>靜心塔羅</button></h1>
+        <h1><button type="button" class="brand" onClick={() => go('home')} aria-label="心富塔羅 Richly，回到首頁">心富塔羅<span class="brand-en" aria-hidden="true">Richly</span></button></h1>
         <nav aria-label="主選單">
           {navItems.map(([v, label]) => (
             <button type="button" key={v} class={`nav${shown === v || (v === 'home' && shown === 'reading' && !fromHistory) || (v === 'history' && shown === 'reading' && fromHistory) ? ' active' : ''}`}

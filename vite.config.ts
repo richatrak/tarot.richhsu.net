@@ -21,9 +21,9 @@ export default defineConfig({
       },
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: '靜心塔羅',
-        short_name: '靜心塔羅',
-        description: '繁體中文塔羅反思工具，可離線使用。',
+        name: '心富塔羅 Richly',
+        short_name: '心富塔羅',
+        description: '心富塔羅 Richly：繁體中文塔羅反思工具，可離線使用。',
         lang: 'zh-Hant-TW',
         start_url: '.',
         scope: '.',
