@@ -29,14 +29,11 @@ To test on a phone on the same Wi-Fi: `npm run build && npx vite preview --host`
 require HTTPS except on `localhost`, so offline mode won't work over plain `http://192.168.x.x` — use the
 deployed HTTPS site for real offline testing.
 
-## Deploy (GitHub Pages)
-`.github/workflows/deploy.yml` builds, tests and deploys on every push to `main`.
-1. Create a GitHub repo and push this project.
-2. Repo **Settings → Pages → Source: GitHub Actions**.
-3. Site appears at `https://<user>.github.io/<repo>/`. The workflow sets `BASE_PATH=/<repo>/`.
-   For a custom domain or a `<user>.github.io` repo, change `BASE_PATH` to `/`.
-
-Making the repo/site public = public release; agree on it first.
+## Deploy (GitHub Pages + custom subdomain)
+Target: public repo `richatrak/richly-tarot`, Pages source **GitHub Actions**, custom domain
+`tarot.richhsu.net` (CNAME → `richatrak.github.io`, DNS in Route 53), HTTPS enforced.
+`.github/workflows/deploy.yml` tests, builds (`BASE_PATH=/`) and deploys on every push to `main`.
+Step-by-step runbook: **[DEPLOY.md](DEPLOY.md)**.
 
 ### Updating the PWA
 Push to `main`. Open apps detect the new service worker (on launch and hourly) and show

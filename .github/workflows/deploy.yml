@@ -23,11 +23,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      # Project site lives at https://<user>.github.io/<repo>/ ; for a custom domain or
-      # <user>.github.io repo, set BASE_PATH to "/" instead.
+      # Served from its own custom subdomain (tarot.richhsu.net), so the site lives at "/".
+      # If you ever serve it from https://<user>.github.io/<repo>/ instead, use
+      # BASE_PATH: /${{ github.event.repository.name }}/
       - run: npm run build
         env:
-          BASE_PATH: /${{ github.event.repository.name }}/
+          BASE_PATH: /
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
