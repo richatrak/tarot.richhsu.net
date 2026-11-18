@@ -14,7 +14,7 @@ no tracking. Built with Vite + Preact + TypeScript + vite-plugin-pwa (Workbox, i
 - 「你想問什麼？」 question box, saved with the reading; one-tap clear.
 - 今日一牌 (daily card): drawn once per local day, stable across reloads.
 - History in localStorage (max 100), per-item delete, clear all, JSON export/import; option to disable saving.
-- PWA: manifest, icons, precache of everything (~141 KB incl. all 78 faces & meanings), offline-readiness indicator that **re-verifies the cache on every launch**, retry button, update prompt when a new version is deployed.
+- PWA: manifest, icons, precache of everything (~179 KB incl. all 78 faces & meanings), offline-readiness indicator that **re-verifies the cache on every launch**, retry button, update prompt when a new version is deployed.
 - Responsive phone/tablet/desktop, portrait/landscape; numbered badges + text labels so order and reversal are never lost; screen-reader labels; reduced-motion support.
 
 ## Run locally
