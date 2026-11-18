@@ -88,7 +88,7 @@ export function SettingsView({ settings, onSettings, onClearAll, onImported }: P
         <h2 id="about-title">關於</h2>
         <p>塔羅在這裡是<strong>自我反思的工具</strong>：牌意幫你換個角度思考，不代表確定的預測，也不能取代醫療、法律、財務或心理專業意見。若你正經歷情緒上的困難，可以撥打衛福部安心專線 1925（24 小時）。</p>
         <p class="muted small">牌組：標準 78 張（22 張大阿爾克那、56 張小阿爾克那），採 RWS 編號（力量 8、正義 11）。抽牌使用 Web Crypto 安全亂數與 Fisher–Yates 洗牌。</p>
-        <p class="muted small">牌面：本專案以程式繪製的原創幾何符號示意圖，非插畫完成版。牌意：原創初稿，已審閱 {reviewed}/{CARDS.length} 張。</p>
+        <p class="muted small">牌面：本專案以程式繪製的原創插圖（扁平風格的象徵場景），並非手繪插畫。牌意：原創初稿，已審閱 {reviewed}/{CARDS.length} 張。</p>
         <p class="muted small">版本 {__APP_VERSION__}</p>
       </section>
     </>

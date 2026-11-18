@@ -71,6 +71,6 @@ Notes: inside Capacitor files are already local, so skip service-worker registra
 
 ## Open items
 - Human review of all 78 cards' text (`status: 'draft'` → `'reviewed'`).
-- Card faces are schematic SVG placeholders; illustrated faces not started.
+- Card faces are original flat-style SVG scenes drawn in code (redrawn 2026-11-18); hand-illustrated faces not started.
 - Real-device testing (see table). Suggested iPhone script: open site online → wait for 已就緒 → 分享 → 加入主畫面 → open from icon online, wait for 已就緒 → Airplane mode → force-quit → reopen → draw Celtic Cross with reversals on → check meanings.
 - No analytics by design.

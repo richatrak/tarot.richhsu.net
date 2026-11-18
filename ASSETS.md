@@ -18,6 +18,7 @@ Original work reduces, but cannot absolutely rule out, infringement risk. Before
 consider a professional review.
 
 ## Status
-These faces are **schematic placeholders** (symbolic, no illustrated figures), clearly labelled as such
-in the app's About section. The data model (`cardId` → face) lets each face be replaced individually by
+These faces are **original flat-style scenes drawn in code** (shared scene primitives plus the four suit
+objects; court cards show simple figures). They are not hand-painted illustrations, and the app's About
+section says so. The data model (`cardId` → face) lets each face be replaced individually by
 commissioned illustrations later without code changes elsewhere.
