@@ -13,11 +13,16 @@ const K_DRAFT = PREFIX + 'draft';
 
 export const HISTORY_LIMIT = 100;
 
+/** Card face artwork the user can switch between (see src/art/decks.ts). */
+export const DECKS = ['anime', 'flat'] as const;
+export type Deck = (typeof DECKS)[number];
+
 export interface Settings {
   reversals: boolean;
   saveHistory: boolean;
+  deck: Deck;
 }
-export const DEFAULT_SETTINGS: Settings = { reversals: true, saveHistory: true };
+export const DEFAULT_SETTINGS: Settings = { reversals: true, saveHistory: true, deck: 'anime' };
 
 export interface DailyCard {
   date: string; // YYYY-MM-DD in local time
@@ -45,7 +50,12 @@ function remove(key: string) {
   try { localStorage.removeItem(key); } catch { /* ignore */ }
 }
 
-export const loadSettings = (): Settings => ({ ...DEFAULT_SETTINGS, ...read<Partial<Settings>>(K_SETTINGS, {}) });
+export function loadSettings(): Settings {
+  const s: Settings = { ...DEFAULT_SETTINGS, ...read<Partial<Settings>>(K_SETTINGS, {}) };
+  // Settings saved before the deck option existed have no deck; one from another version may name an unknown deck.
+  if (!DECKS.includes(s.deck)) s.deck = DEFAULT_SETTINGS.deck;
+  return s;
+}
 export const saveSettings = (s: Settings) => write(K_SETTINGS, s);
 
 export const loadHistory = (): Reading[] => {

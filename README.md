@@ -11,10 +11,11 @@ no tracking. Built with Vite + Preact + TypeScript + vite-plugin-pwa (Workbox, i
 - Draws: Web Crypto `getRandomValues` + rejection sampling (no modulo bias) + Fisher–Yates; no repeats within a reading. Each card keeps draw order, position, upright/reversed.
 - Reversals: on by default, 50% per card, toggle on home & settings.
 - Every card: zh-TW name, English name, keywords, upright/reversed meaning, reflection tip. Content marked `draft` until human-reviewed (shown in UI).
+- Card faces: two decks, switchable in Settings: anime-style illustrations (AI-generated, the default) or flat-style scenes drawn in code. See [ASSETS.md](ASSETS.md).
 - 「你想問什麼？」 question box, saved with the reading; one-tap clear.
 - 今日一牌 (daily card): drawn once per local day, stable across reloads.
 - History in localStorage (max 100), per-item delete, clear all, JSON export/import; option to disable saving.
-- PWA: manifest, icons, precache of everything (~179 KB incl. all 78 faces & meanings), offline-readiness indicator that **re-verifies the cache on every launch**, retry button, update prompt when a new version is deployed.
+- PWA: manifest, icons, precache of everything (~7.7 MiB, mostly the 78 anime-deck illustrations; the flat deck and all meanings are in the JS bundle), offline-readiness indicator that **re-verifies the cache on every launch**, retry button, update prompt when a new version is deployed.
 - Responsive phone/tablet/desktop, portrait/landscape; numbered badges + text labels so order and reversal are never lost; screen-reader labels; reduced-motion support.
 
 ## Run locally
@@ -71,6 +72,6 @@ Notes: inside Capacitor files are already local, so skip service-worker registra
 
 ## Open items
 - Human review of all 78 cards' text (`status: 'draft'` → `'reviewed'`).
-- Card faces are original flat-style SVG scenes drawn in code (redrawn 2026-11-18); hand-illustrated faces not started.
+- Card faces: the anime deck is AI-generated (2026-11-19) and the flat deck is original SVG scenes drawn in code (redrawn 2026-11-18); hand-illustrated faces not started.
 - Real-device testing (see table). Suggested iPhone script: open site online → wait for 已就緒 → 分享 → 加入主畫面 → open from icon online, wait for 已就緒 → Airplane mode → force-quit → reopen → draw Celtic Cross with reversals on → check meanings.
 - No analytics by design.

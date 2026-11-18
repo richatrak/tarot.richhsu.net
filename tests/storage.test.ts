@@ -24,8 +24,18 @@ beforeEach(() => {
 });
 
 describe('storage', () => {
-  it('defaults: reversals on, history on', () => {
-    expect(store.loadSettings()).toEqual({ reversals: true, saveHistory: true });
+  it('defaults: reversals on, history on, anime deck', () => {
+    expect(store.loadSettings()).toEqual({ reversals: true, saveHistory: true, deck: 'anime' });
+  });
+  it('settings saved before the deck option existed keep their values and get the default deck', () => {
+    localStorage.setItem('tarot.v1.settings', '{"reversals":false,"saveHistory":true}');
+    expect(store.loadSettings()).toEqual({ reversals: false, saveHistory: true, deck: 'anime' });
+  });
+  it('an unknown deck falls back to the default; a valid choice round-trips', () => {
+    localStorage.setItem('tarot.v1.settings', '{"reversals":true,"saveHistory":false,"deck":"vintage"}');
+    expect(store.loadSettings()).toEqual({ reversals: true, saveHistory: false, deck: 'anime' });
+    store.saveSettings({ ...store.DEFAULT_SETTINGS, deck: 'flat' });
+    expect(store.loadSettings().deck).toBe('flat');
   });
   it('saves question with reading; delete and clear work', () => {
     const r = createReading(getSpread('ppf'), 3, '我該怎麼做？', true);

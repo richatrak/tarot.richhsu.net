@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
+import { CardFace } from '../art/CardArt';
+import { DeckContext } from '../art/decks';
 import { CARDS } from '../data/cards';
 import { checkOffline, isIOS, isStandalone, onOfflineState, retryOffline, type OfflineState } from '../lib/pwa';
-import { exportData, importData, type Settings } from '../lib/storage';
+import { exportData, importData, type Deck, type Settings } from '../lib/storage';
+
+const DECK_OPTIONS: { id: Deck; name: string; summary: string }[] = [
+  { id: 'anime', name: '動漫插畫', summary: '每張牌一幅日系動漫風的彩色插畫' },
+  { id: 'flat', name: '扁平插圖', summary: '簡潔的扁平風格象徵場景' },
+];
+/** Shown small in each deck option so the two styles can be compared. */
+const DECK_SAMPLE = 'major-19';
 
 interface Props {
   settings: Settings;
@@ -57,6 +66,16 @@ export function SettingsView({ settings, onSettings, onClearAll, onImported }: P
           <input type="checkbox" checked={settings.saveHistory} onChange={(e) => onSettings({ ...settings, saveHistory: (e.target as HTMLInputElement).checked })} />
           <span>在本機儲存抽牌紀錄與問題</span>
         </label>
+        <h3 id="deck-title" class="deck-title">牌面風格</h3>
+        <div class="decks" role="radiogroup" aria-labelledby="deck-title">
+          {DECK_OPTIONS.map((d) => (
+            <label class={`deck-opt${settings.deck === d.id ? ' selected' : ''}`} key={d.id}>
+              <input type="radio" name="deck" value={d.id} checked={settings.deck === d.id} onChange={() => onSettings({ ...settings, deck: d.id })} />
+              <span class="deck-sample"><DeckContext.Provider value={d.id}><CardFace cardId={DECK_SAMPLE} /></DeckContext.Provider></span>
+              <span class="deck-text"><span class="deck-name">{d.name}</span><span class="deck-sum">{d.summary}</span></span>
+            </label>
+          ))}
+        </div>
       </section>
 
       <section class="panel" aria-labelledby="data-title">
@@ -88,7 +107,7 @@ export function SettingsView({ settings, onSettings, onClearAll, onImported }: P
         <h2 id="about-title">關於</h2>
         <p>塔羅在這裡是<strong>自我反思的工具</strong>：牌意幫你換個角度思考，不代表確定的預測，也不能取代醫療、法律、財務或心理專業意見。若你正經歷情緒上的困難，可以撥打衛福部安心專線 1925（24 小時）。</p>
         <p class="muted small">牌組：標準 78 張（22 張大阿爾克那、56 張小阿爾克那），採 RWS 編號（力量 8、正義 11）。抽牌使用 Web Crypto 安全亂數與 Fisher–Yates 洗牌。</p>
-        <p class="muted small">牌面：本專案以程式繪製的原創插圖（扁平風格的象徵場景），並非手繪插畫。牌意：原創初稿，已審閱 {reviewed}/{CARDS.length} 張。</p>
+        <p class="muted small">牌面：有兩種風格，可在上方的「牌面風格」切換。「動漫插畫」由 AI 生圖工具依本專案撰寫的場景描述產生；「扁平插圖」是本專案以程式繪製的原創插圖。兩種都不是手繪插畫。牌意：原創初稿，已審閱 {reviewed}/{CARDS.length} 張。</p>
         <p class="muted small">版本 {__APP_VERSION__}</p>
       </section>
     </>

@@ -82,6 +82,18 @@ input[type=number] { width: 5em; font-size: 16px; text-align: center; min-height
 .spread-name { font-weight: 700; }
 .spread-sum { color: var(--muted); font-size: .88rem; }
 .spread-pos { color: var(--gold); font-size: .8rem; }
+
+/* ---------- deck chooser (settings) ---------- */
+.deck-title { margin: 20px 0 8px; font-size: 1rem; }
+.decks { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 10px; }
+.deck-opt { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid #3a3470; border-radius: 12px; background: #19163a; cursor: pointer; position: relative; }
+.deck-opt input { position: absolute; opacity: 0; }
+.deck-opt.selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.deck-opt:focus-within { outline: 3px solid var(--gold); outline-offset: 2px; }
+.deck-sample { flex: none; width: 56px; }
+.deck-text { display: grid; gap: 2px; }
+.deck-name { font-weight: 700; }
+.deck-sum { color: var(--muted); font-size: .88rem; }
 .stepper { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .draw-bar { position: sticky; bottom: 0; padding: 12px 0 calc(12px + env(safe-area-inset-bottom)); display: flex; justify-content: center; background: linear-gradient(transparent, var(--bg) 35%); z-index: 3; }
 

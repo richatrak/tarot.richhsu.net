@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
+import { DeckContext } from './art/decks';
 import { History } from './components/History';
 import { Home } from './components/Home';
 import { ReadingView } from './components/ReadingView';
@@ -58,7 +59,7 @@ export function App() {
   const navItems: [View, string][] = [['home', '抽牌'], ['history', '紀錄'], ['settings', '設定・說明']];
 
   return (
-    <>
+    <DeckContext.Provider value={settings.deck}>
       <a class="skip" href="#main">跳到主要內容</a>
       <header class="top">
         <h1><button type="button" class="brand" onClick={() => go('home')} aria-label="心富塔羅 Richly，回到首頁">心富塔羅<span class="brand-en" aria-hidden="true">Richly</span></button></h1>
@@ -109,6 +110,6 @@ export function App() {
         )}
       </main>
       <footer class="foot">僅供自我反思與娛樂參考，不構成任何專業建議。</footer>
-    </>
+    </DeckContext.Provider>
   );
 }

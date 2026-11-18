@@ -11,7 +11,9 @@
  * nested <svg> instead.
  */
 import type { JSX } from 'preact';
+import { useContext } from 'preact/hooks';
 import { getCard, roman, RANK_NAMES, SUIT_INFO, type Card, type Suit } from '../data/cards';
+import { DeckContext, rasterArt } from './decks';
 
 const W = 200;
 const H = 340;
@@ -480,13 +482,15 @@ function Major({ n }: { n: number }) {
 }
 
 /* ---------- frame ---------- */
-function Face({ card }: { card: Card }) {
+/** `raster`: an illustration to show in the art panel instead of the drawn scene. */
+function Face({ card, raster }: { card: Card; raster?: string }) {
   const major = card.arcana === 'major';
   const suit = card.suit;
   const color = major ? MAJOR_COLOR : PAL[suit!].main;
   const n = card.number;
   let art: J;
-  if (major) art = <Major n={n} />;
+  if (raster) art = <image href={raster} x={X0} y={Y0} width={PW} height={PH} preserveAspectRatio="xMidYMid slice" />;
+  else if (major) art = <Major n={n} />;
   else if (n > 10) art = <>{sky(PAL[suit!].sky)}<Court rank={n} suit={suit!} /></>;
   else {
     const sc = scene(suit!, n);
@@ -541,10 +545,12 @@ export function CardBack() {
   );
 }
 
+/** A card's face in the deck chosen in settings (see ./decks). */
 export function CardFace({ cardId }: { cardId: string }) {
+  const raster = rasterArt(cardId, useContext(DeckContext));
   return (
     <svg viewBox={`0 0 ${W} ${H}`} class="card-svg" aria-hidden="true">
-      <Face card={getCard(cardId)} />
+      <Face card={getCard(cardId)} raster={raster} />
     </svg>
   );
 }
