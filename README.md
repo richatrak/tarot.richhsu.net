@@ -30,7 +30,7 @@ require HTTPS except on `localhost`, so offline mode won't work over plain `http
 deployed HTTPS site for real offline testing.
 
 ## Deploy (GitHub Pages + custom subdomain)
-Target: public repo `richatrak/richly-tarot`, Pages source **GitHub Actions**, custom domain
+Target: public repo `richatrak/tarot.richhsu.net`, Pages source **GitHub Actions**, custom domain
 `tarot.richhsu.net` (CNAME → `richatrak.github.io`, DNS in Route 53), HTTPS enforced.
 `.github/workflows/deploy.yml` tests, builds (`BASE_PATH=/`) and deploys on every push to `main`.
 Step-by-step runbook: **[DEPLOY.md](DEPLOY.md)**.

@@ -9,7 +9,7 @@ Ask Rich and record the answers. **Do not continue past step 2 without a yes on 
 - [ ] Subdomain is `tarot.richhsu.net` (recommended). Once published, **never change it**: the browser
       ties history, the daily card, the saved question and the installed home-screen app to the exact
       origin; a new hostname resets everything for every user.
-- [ ] OK to create a **public** repo `richatrak/richly-tarot` (free GitHub Pages needs public). Code and all
+- [ ] OK to create a **public** repo `richatrak/tarot.richhsu.net` (free GitHub Pages needs public). Code and all
       78 card texts become publicly readable. Optional: add a LICENSE (e.g. MIT for code, CC BY-NC 4.0 for text).
 - [ ] OK that the site is publicly reachable and associated with the name "richhsu".
 
@@ -27,7 +27,7 @@ aws route53domains get-domain-detail --region us-east-1 --domain-name richhsu.ne
   --query '{AutoRenew:AutoRenew,Expiry:ExpirationDate}'
 # The name must be unused:
 dig +short CNAME tarot.richhsu.net; dig +short A tarot.richhsu.net   # both empty
-gh repo view richatrak/richly-tarot 2>&1 | head -1                    # "Could not resolve" = free
+gh repo view richatrak/tarot.richhsu.net 2>&1 | head -1                    # "Could not resolve" = free
 ```
 If auto-renew is OFF, tell Rich (don't change billing settings yourself).
 
@@ -39,7 +39,7 @@ base64-encoded, inside the handoff artifact as `tarot-richly.bundle.b64.txt`.
 base64 -d tarot-richly.bundle.b64.txt > tarot-richly.bundle
 echo "<sha256 from the artifact>  tarot-richly.bundle" | shasum -a 256 -c   # must say OK
 git bundle verify tarot-richly.bundle
-git clone -b main tarot-richly.bundle richly-tarot && cd richly-tarot
+git clone -b main tarot-richly.bundle tarot.richhsu.net && cd tarot.richhsu.net
 git remote remove origin            # origin points at the bundle file
 git log --oneline | head            # top commit should match the artifact
 ```
@@ -50,16 +50,16 @@ npm ci && npm test && npm run build    # 20 unit tests pass; dist/ has index.htm
 
 ## 3. Create the repo and push
 ```bash
-gh repo create richatrak/richly-tarot --public \
+gh repo create richatrak/tarot.richhsu.net --public \
   --description "心富塔羅 Richly — zh-TW tarot reflection PWA (offline)" \
   --source . --remote origin --push
 ```
 
 ## 4. Turn on GitHub Pages (source = GitHub Actions)
 ```bash
-gh api -X POST repos/richatrak/richly-tarot/pages -f build_type=workflow
-gh workflow run "Deploy to GitHub Pages" -R richatrak/richly-tarot   # or wait for the push-triggered run
-gh run watch -R richatrak/richly-tarot --exit-status
+gh api -X POST repos/richatrak/tarot.richhsu.net/pages -f build_type=workflow
+gh workflow run "Deploy to GitHub Pages" -R richatrak/tarot.richhsu.net   # or wait for the push-triggered run
+gh run watch -R richatrak/tarot.richhsu.net --exit-status
 ```
 If the first run failed only because Pages was not enabled yet, re-run it.
 
@@ -86,10 +86,10 @@ Same pattern as the existing `github.richhsu.net` and the `*.kidz.tw` sites.
 
 ## 7. Attach the custom domain and enforce HTTPS
 ```bash
-gh api -X PUT repos/richatrak/richly-tarot/pages -f cname=tarot.richhsu.net
+gh api -X PUT repos/richatrak/tarot.richhsu.net/pages -f cname=tarot.richhsu.net
 # Certificate issuance takes minutes (up to ~1h). Poll until state is "approved"/"issued":
-gh api repos/richatrak/richly-tarot/pages --jq '{cname, status, https_certificate}'
-gh api -X PUT repos/richatrak/richly-tarot/pages -F https_enforced=true
+gh api repos/richatrak/tarot.richhsu.net/pages --jq '{cname, status, https_certificate}'
+gh api -X PUT repos/richatrak/tarot.richhsu.net/pages -F https_enforced=true
 ```
 With a GitHub-Actions Pages source no `CNAME` file is needed in the build; the domain lives in repo settings.
 
@@ -118,7 +118,7 @@ Push to `main` → Actions tests + deploys. Open apps show 「有新版本可用
 
 ## Rollback / removal (avoid dangling DNS)
 1. Delete the Route 53 CNAME `tarot.richhsu.net` **first** (same JSON with `"Action": "DELETE"`, identical record values).
-2. Then `gh api -X DELETE repos/richatrak/richly-tarot/pages` and/or archive/delete the repo.
+2. Then `gh api -X DELETE repos/richatrak/tarot.richhsu.net/pages` and/or archive/delete the repo.
 Never leave the CNAME pointing at github.io without a repo claiming it.
 
 ## Concerns recap
