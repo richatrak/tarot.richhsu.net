@@ -39,7 +39,7 @@ Step-by-step runbook: **[DEPLOY.md](DEPLOY.md)**.
 ### Updating the PWA
 Push to `main`. Open apps detect the new service worker (on launch and hourly) and show
 「有新版本可用 → 立即更新」. Choosing 「稍後」 keeps the old version until all tabs/app windows close.
-Bump `version` in `package.json` so the About page shows it. Old precaches are cleaned automatically.
+Bump `version` in `package.json` to mark a release (the app itself no longer displays it). Old precaches are cleaned automatically.
 
 ## Offline behaviour & limits
 - Ready only after **one complete online load**; the header pill shows 「離線資源已就緒 (n/n)」.

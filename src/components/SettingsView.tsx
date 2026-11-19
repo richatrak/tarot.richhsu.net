@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { CardFace } from '../art/CardArt';
 import { DeckContext } from '../art/decks';
-import { CARDS } from '../data/cards';
 import { checkOffline, isIOS, isStandalone, onOfflineState, retryOffline, type OfflineState } from '../lib/pwa';
 import { exportData, importData, type Deck, type Settings } from '../lib/storage';
 
@@ -34,7 +33,6 @@ export function SettingsView({ settings, onSettings, onClearAll, onImported }: P
   const [msg, setMsg] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
   useEffect(() => { checkOffline(); return onOfflineState(setOff); }, []);
-  const reviewed = CARDS.filter((c) => c.status === 'reviewed').length;
 
   const doExport = () => {
     const blob = new Blob([JSON.stringify(exportData(), null, 2)], { type: 'application/json' });
@@ -106,9 +104,6 @@ export function SettingsView({ settings, onSettings, onClearAll, onImported }: P
       <section class="panel" aria-labelledby="about-title">
         <h2 id="about-title">關於</h2>
         <p>塔羅在這裡是<strong>自我反思的工具</strong>：牌意幫你換個角度思考，不代表確定的預測，也不能取代醫療、法律、財務或心理專業意見。若你正經歷情緒上的困難，可以撥打衛福部安心專線 1925（24 小時）。</p>
-        <p class="muted small">牌組：標準 78 張（22 張大阿爾克那、56 張小阿爾克那），採 RWS 編號（力量 8、正義 11）。抽牌使用 Web Crypto 安全亂數與 Fisher–Yates 洗牌。</p>
-        <p class="muted small">牌面：有兩種風格，可在上方的「牌面風格」切換。「動漫插畫」由 AI 生圖工具依本專案撰寫的場景描述產生；「扁平插圖」是本專案以程式繪製的原創插圖。兩種都不是手繪插畫。牌意：原創初稿，已審閱 {reviewed}/{CARDS.length} 張。</p>
-        <p class="muted small">版本 {__APP_VERSION__}</p>
       </section>
     </>
   );

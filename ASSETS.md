@@ -29,5 +29,5 @@ The app ships two decks, switchable in Settings (`src/art/decks.ts`):
 - **Flat**: **original flat-style scenes drawn in code** (shared scene primitives plus the four suit
   objects; court cards show simple figures).
 
-Neither deck is hand-painted, and the app's About section says so. The data model (`cardId` → face) lets
+Neither deck is hand-painted. The data model (`cardId` → face) lets
 each face be replaced individually by commissioned illustrations later without code changes elsewhere.
